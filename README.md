@@ -28,7 +28,7 @@ Example
         <body>
             <!-- A lot of content here ... -->
             <a id="scroll-up-link" href="#">Scroll Up!</a>
-            <script src="scroll.back.min.js"></script>
+            <script src="back.min.js"></script>
             <script>
             /*globals window, document, WillianVeiga */
             window.addEventListener('load', function () {
