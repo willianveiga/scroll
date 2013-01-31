@@ -1,10 +1,12 @@
 Scroll
 ======
 
-Back 0.1
+Back 0.2
 --------
 
-Show/hide a link that scrolls back to top according to the scroll position.
+Show/hide a link that scrolls back to top according to the document's scroll position.
+
+Pure JavaScript implementation. You don't need any library or framework to use this piece of code.
 
 Example
 -------
@@ -46,5 +48,9 @@ Example
 You can unbind all events calling unbindEvents:
 
     scrollBack.unbindEvents();
+
+The showLinkAfter option represents the number of pixels from top of document scrollbar that is scrolled before the link appears:
+
+    scrollBack = new WillianVeiga.Scroll.Back(link, {showLinkAfter: 1000});
 
 Please, report bugs or fork it :)

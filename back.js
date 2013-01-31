@@ -23,12 +23,22 @@ WillianVeiga.Scroll = WillianVeiga.Scroll || {};
     'use strict';
 
     var element,
+        defaultOptions,
         clickEvent,
         scrollEvent,
         setInitialElementStyle;
 
-    namespace.Back = function (inputElement) {
+    defaultOptions = {showLinkAfter: 10};
+
+    namespace.Back = function (inputElement, options) {
+        var option;
+
         element = inputElement;
+        for (option in options) {
+            if (options.hasOwnProperty(option)) {
+                defaultOptions[option] = options[option];
+            }
+        }
         setInitialElementStyle();
     };
 
@@ -54,6 +64,8 @@ WillianVeiga.Scroll = WillianVeiga.Scroll || {};
     };
 
     scrollEvent = function () {
-        element.style.display = (this.scrollY > 10 ? 'block' : 'none');
+        element.style.display = this.scrollY >= defaultOptions.showLinkAfter
+            ? 'block'
+            : 'none';
     };
 }(WillianVeiga.Scroll));
