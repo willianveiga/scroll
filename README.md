@@ -36,7 +36,7 @@ Example
             window.addEventListener('load', function () {
                 'use strict';
     
-                var link = document.getElementsByTagName('a')[0],
+                var link = document.getElementById('scroll-up-link'),
                     scrollBack = new WillianVeiga.Scroll.Back(link);
     
                 scrollBack.bindEvents();
@@ -49,7 +49,7 @@ You can unbind all events calling unbindEvents:
 
     scrollBack.unbindEvents();
 
-The showLinkAfter option represents the number of pixels from top of document scrollbar that is scrolled before the link appears:
+The **showLinkAfter** option represents the number of pixels from top of document scrollbar that is scrolled before the link appears:
 
     scrollBack = new WillianVeiga.Scroll.Back(link, {showLinkAfter: 1000});
 
