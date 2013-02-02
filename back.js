@@ -22,11 +22,14 @@ WillianVeiga.Scroll = WillianVeiga.Scroll || {};
 (function (namespace) {
     'use strict';
 
-    var element,
-        defaultOptions,
+    var defaultOptions,
+        element,
+        storeOginalElementStyle,
+        originalElementStyle = {},
+        setInitialElementStyle,
+        restoreOriginalElementStyle,
         clickEvent,
-        scrollEvent,
-        setInitialElementStyle;
+        scrollEvent;
 
     defaultOptions = {showLinkAfter: 10};
 
@@ -39,23 +42,38 @@ WillianVeiga.Scroll = WillianVeiga.Scroll || {};
                 defaultOptions[option] = options[option];
             }
         }
+        storeOginalElementStyle();
         setInitialElementStyle();
     };
 
     namespace.Back.prototype.bindEvents = function () {
         element.addEventListener('click', clickEvent);
         window.addEventListener('scroll', scrollEvent);
+        setInitialElementStyle();
     };
 
     namespace.Back.prototype.unbindEvents = function () {
         element.removeEventListener('click', clickEvent);
         window.removeEventListener('scroll', scrollEvent);
+        restoreOriginalElementStyle();
+    };
+
+    storeOginalElementStyle = function () {
+        var style = window.getComputedStyle(element);
+        originalElementStyle.position = style.getPropertyValue('position');
+        originalElementStyle.display = style.getPropertyValue('display');
     };
 
     setInitialElementStyle = function () {
         var style = element.style;
         style.position = 'fixed';
         style.display = 'none';
+    };
+
+    restoreOriginalElementStyle = function () {
+        var style = element.style;
+        style.position = originalElementStyle.position;
+        style.display = originalElementStyle.display;
     };
 
     clickEvent = function (event) {
